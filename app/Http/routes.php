@@ -11,10 +11,21 @@
 |
 */
 
-$app->get('users', [
-    'as' => 'user.get', 'uses' => 'UserController@all'
-]);
+use App\Http\Controllers\UserController;
 
-$app->post('users', [
-    'as' => 'user.create', 'uses' => 'UserController@create'
-]);
+/**
+ * @var Dingo\Api\Routing\Router $api
+ */
+$api = app('Dingo\Api\Routing\Router');
+
+$api->version('v1', function ($api) {
+
+	$api->get('users', 'App\Http\Controllers\UserController@all');
+	$api->get('users/{id}', 'App\Http\Controllers\UserController@get');
+	$api->put('users/{id}', 'App\Http\Controllers\UserController@update');
+
+	$api->post('users', 'App\Http\Controllers\UserController@create');
+});
+
+
+

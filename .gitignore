@@ -1,3 +1,5 @@
 /vendor
 .env
 .phpintel
+.idea
+lumen_ide_helper.php
